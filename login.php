@@ -1,28 +1,33 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+session_start();
 
-require_once("database.php");
-require_once("user.php");
+require_once __DIR__ . "/database.php";
+require_once __DIR__ . "/users.php";
 
 $username = $_POST['input_username'] ?? '';
 $password = $_POST['input_password'] ?? '';
 
 $db = new Database();
-$conn = $db->connect();
-$user = new User($conn);
+$conn = $db->connect(); // Sekarang ini tidak akan error lagi
 
-$ditemukan = $user ->login($username, $password);
+$user = new Users($conn);
 
-if($ditemukan == false){
-    $_SESSION["pesan_kesalahan"] = "Login Gagal";
+$ditemukan = $user->login($username, $password);
+
+if ($ditemukan == false) {
+    $_SESSION['pesan_kesalahan'] = "login gagal";
     header("Location: index.php");
-    exit;
-}else{
+    exit();
+} else {
     $_SESSION['is_logged_in'] = true;
     $_SESSION['username'] = $username;
 
     header("Location: dashboard/index.php");
-    exit;
+    exit();
+
+
+
+    echo "<h4>Username atau password salah!</h4>";
+
 }
+?>
