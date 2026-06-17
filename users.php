@@ -14,7 +14,7 @@ class Users
     // REGISTER
     public function create($username, $email, $asal, $password)
     {
-        $sql = "INSERT INTO $this->table (username, email, asal, password)
+        $sql = "INSERT INTO $this->table (Username, Email, Asal, Password)
                 VALUES ('$username', '$email', '$asal', '$password')";
 
         if ($this->conn->query($sql)) {
@@ -24,7 +24,7 @@ class Users
         }
     }
 
-    // LOGIN
+    
     public function login($username, $password)
     {
         $sql = "SELECT * FROM $this->table
@@ -51,6 +51,11 @@ class Users
         }
 
         
+    }
+    public function hapus($id){
+        $sql = "DELETE FROM $this->table WHERE id = " . $id;
+        $result = $this->conn->query($sql);
+        return $result;
     }
 }
 ?>
