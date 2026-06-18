@@ -38,7 +38,8 @@ if ($result && $result->num_rows > 0) {
                   <td><?= $user['Email'] ?></td>
                   <td><?= $user['Asal'] ?></td>
                   <td>
-                   <a href="delete_user.php?id=<?= $user['ID'] ?>"> delete</a> | edit 
+                   <a href="delete_user.php?id=<?= $user['ID'] ?>">  delete</a> 
+                   <a href="index.php?halaman=edit_user_form.php&id=<?php echo $user['ID']; ?>">edit</a> 
               </td>
               </tr>
                  <?php
