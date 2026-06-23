@@ -16,6 +16,13 @@ if ($result && $result->num_rows > 0) {
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 <h1>Daftar User</h1>
 <hr />
+
+<?php if (isset($_SESSION['username'])): ?>
+  <div class="alert alert-success" role="alert" style="background-color: #d1e7dd; color: #0f5132; border-color: #badbcc; padding: 1rem 1.25rem; margin-bottom: 1rem; border-radius: 0.375;">
+    Selamat Datang <strong><?= htmlspecialchars($_SESSION['username']); ?></strong> Anda Telah Login Sebanyak <strong><?= isset($_SESSION['login_count']) ? $_SESSION['login_count'] : 1; ?></strong> Kali
+</div>
+<?php endif; ?>
+
 <a href="index.php?halaman=tambah_user_form.php" class="btn btn-primary mb-3">Tambah User</a>
           <div class="table-responsive small">
             <table class="table table-striped table-sm"> 

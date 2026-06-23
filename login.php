@@ -22,6 +22,18 @@ if ($ditemukan == false) {
     $_SESSION['is_logged_in'] = true;
     $_SESSION['username'] = $username;
 
+if (!isset($_SESSION['user_logins'])){
+    $_SESSION['user_logins'] = [];
+}
+
+if (isset($_SESSION['user_logins'][$username])){
+    $_SESSION['user_logins'][$username]++;
+} else {
+    $_SESSION['user_logins'][$username] = 1;
+}
+
+$_SESSION['login_count'] = $_SESSION['user_logins'][$username];
+
     header("Location: dashboard/index.php");
     exit();
 
